@@ -214,7 +214,6 @@ Public Class MoebooruPost
   End Sub
 
   Protected Overrides Sub ParseOrigin()
-    Dim ReaderSettings As New XmlReaderSettings With {.ConformanceLevel = ConformanceLevel.Fragment, .DtdProcessing = DtdProcessing.Ignore}
     Using Reader = XmlReader.Create(_Origin)
       With Reader
         Do While .Read

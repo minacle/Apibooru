@@ -16,12 +16,6 @@ Public Class Booru
     Throw New NotImplementedException
   End Function
 
-  Private Class PostsListAsyncState
-    Public Property Limit As Integer
-    Public Property Page As Integer
-    Public Property Tags As String
-  End Class
-
   Public Overridable Function PostsListAsync(Limit As Integer, Page As Integer, Tags As String) As Task(Of Post())
     Return Task.Run(Function() Task(Of Post()).Factory.FromAsync(BeginPostsList(Limit, Page, Tags, Nothing, Nothing), AddressOf EndPostsList, Nothing))
   End Function

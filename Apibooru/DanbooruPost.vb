@@ -390,6 +390,11 @@ Public Class DanbooruPost
                             _PreviewFileUrl = .Value
                         End Select
                         .Read()
+                      Case XmlNodeType.EndElement
+                        Select Case .Name
+                          Case "post"
+                            Exit Do
+                        End Select
                     End Select
                   Loop
               End Select

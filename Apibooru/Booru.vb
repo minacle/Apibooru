@@ -4,6 +4,10 @@ Public Class Booru
 
   Public Property BaseUri As Uri
 
+  Public Sub New(BaseUri As String)
+    Me.BaseUri = New Uri(BaseUri)
+  End Sub
+
   Public Sub New(BaseUri As Uri)
     Me.BaseUri = BaseUri
   End Sub

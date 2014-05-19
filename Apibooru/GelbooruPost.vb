@@ -4,135 +4,85 @@ Imports System.Xml
 Public Class GelbooruPost
   Inherits Post
 
-  Protected _Tags As String
   Protected _CreatedAt As String
-  Protected _CreatorId As Integer
   Protected _Change As Integer
-  Protected _Source As String
-  Protected _Score As Integer
-  Protected _Md5 As String
   Protected _PreviewUrl As String
   Protected _PreviewWidth As Integer
   Protected _PreviewHeight As Integer
   Protected _SampleUrl As String
   Protected _SampleWidth As Integer
   Protected _SampleHeight As Integer
-  Protected _Rating As Char
-  Protected _HasChildren As Boolean
-  Protected _ParentId As Integer?
   Protected _Status As String
   Protected _HasNotes As Boolean
   Protected _HasComments As Boolean
 
-  Public ReadOnly Property Tags As String
+  Public Overridable ReadOnly Property TagString As String
     Get
       Return _Tags
     End Get
   End Property
 
-  Public ReadOnly Property CreatedAt As Integer
+  Public Overridable ReadOnly Property CreatedAt As Integer
     Get
       Return _CreatedAt
     End Get
   End Property
 
-  Public ReadOnly Property CreatorId As Integer
-    Get
-      Return _CreatorId
-    End Get
-  End Property
-
-  Public ReadOnly Property Change As Integer
+  Public Overridable ReadOnly Property Change As Integer
     Get
       Return _Change
     End Get
   End Property
 
-  Public ReadOnly Property Source As String
-    Get
-      Return _Source
-    End Get
-  End Property
-
-  Public ReadOnly Property Score As Integer
-    Get
-      Return _Score
-    End Get
-  End Property
-
-  Public ReadOnly Property Md5 As String
-    Get
-      Return _Md5
-    End Get
-  End Property
-
-  Public ReadOnly Property PreviewUrl As String
+  Public Overridable ReadOnly Property PreviewUrl As String
     Get
       Return _PreviewUrl
     End Get
   End Property
 
-  Public ReadOnly Property PreviewWidth As Integer
+  Public Overridable ReadOnly Property PreviewWidth As Integer
     Get
       Return _PreviewWidth
     End Get
   End Property
 
-  Public ReadOnly Property PreviewHeight As Integer
+  Public Overridable ReadOnly Property PreviewHeight As Integer
     Get
       Return _PreviewHeight
     End Get
   End Property
 
-  Public ReadOnly Property SampleUrl As String
+  Public Overridable ReadOnly Property SampleUrl As String
     Get
       Return _SampleUrl
     End Get
   End Property
 
-  Public ReadOnly Property SampleWidth As Integer
+  Public Overridable ReadOnly Property SampleWidth As Integer
     Get
       Return _SampleWidth
     End Get
   End Property
 
-  Public ReadOnly Property SampleHeight As Integer
+  Public Overridable ReadOnly Property SampleHeight As Integer
     Get
       Return _SampleHeight
     End Get
   End Property
 
-  Public ReadOnly Property Rating As Char
-    Get
-      Return _Rating
-    End Get
-  End Property
-
-  Public ReadOnly Property HasChildren As Boolean
-    Get
-      Return _HasChildren
-    End Get
-  End Property
-
-  Public ReadOnly Property ParentId As Integer?
-    Get
-      Return _ParentId
-    End Get
-  End Property
-
-  Public ReadOnly Property Status As String
+  Public Overridable ReadOnly Property Status As String
     Get
       Return _Status
     End Get
   End Property
 
-  Public ReadOnly Property HasNotes As Boolean
+  Public Overridable ReadOnly Property HasNotes As Boolean
     Get
       Return _HasNotes
     End Get
   End Property
 
-  Public ReadOnly Property HasComments As Boolean
+  Public Overridable ReadOnly Property HasComments As Boolean
     Get
       Return _HasComments
     End Get

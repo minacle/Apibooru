@@ -4,14 +4,9 @@ Imports System.Xml
 Public Class MoebooruPost
   Inherits Post
 
-  Protected _Tags As String
   Protected _CreatedAt As Integer
-  Protected _CreatorId As Integer
   Protected _Author As String
   Protected _Change As Integer
-  Protected _Source As String
-  Protected _Score As Integer
-  Protected _Md5 As String
   Protected _FileSize As Integer
   Protected _IsShownInIndex As Boolean
   Protected _PreviewUrl As String
@@ -27,175 +22,124 @@ Public Class MoebooruPost
   Protected _JpegWidth As Integer
   Protected _JpegHeight As Integer
   Protected _JpegFileSize As Integer
-  Protected _Rating As Char
-  Protected _HasChildren As Boolean
-  Protected _ParentId As Integer?
   Protected _Status As String
   Protected _IsHeld As Boolean
 
-  Public ReadOnly Property Tags As String
-    Get
-      Return _Tags
-    End Get
-  End Property
-
-  Public ReadOnly Property CreatedAt As Integer
+  Public Overridable ReadOnly Property CreatedAt As Integer
     Get
       Return _CreatedAt
     End Get
   End Property
 
-  Public ReadOnly Property CreatorId As Integer
-    Get
-      Return _CreatorId
-    End Get
-  End Property
-
-  Public ReadOnly Property Author As String
+  Public Overridable ReadOnly Property Author As String
     Get
       Return _Author
     End Get
   End Property
 
-  Public ReadOnly Property Change As Integer
+  Public Overridable ReadOnly Property Change As Integer
     Get
       Return _Change
     End Get
   End Property
 
-  Public ReadOnly Property Source As String
-    Get
-      Return _Source
-    End Get
-  End Property
-
-  Public ReadOnly Property Score As Integer
-    Get
-      Return _Score
-    End Get
-  End Property
-
-  Public ReadOnly Property Md5 As String
-    Get
-      Return _Md5
-    End Get
-  End Property
-
-  Public ReadOnly Property FileSize As Integer
+  Public Overridable ReadOnly Property FileSize As Integer
     Get
       Return _FileSize
     End Get
   End Property
 
-  Public ReadOnly Property IsShownInIndex As Boolean
+  Public Overridable ReadOnly Property IsShownInIndex As Boolean
     Get
       Return _IsShownInIndex
     End Get
   End Property
 
-  Public ReadOnly Property PreviewUrl As String
+  Public Overridable ReadOnly Property PreviewUrl As String
     Get
       Return _PreviewUrl
     End Get
   End Property
 
-  Public ReadOnly Property PreviewWidth As Integer
+  Public Overridable ReadOnly Property PreviewWidth As Integer
     Get
       Return _PreviewWidth
     End Get
   End Property
 
-  Public ReadOnly Property PreviewHeight As Integer
+  Public Overridable ReadOnly Property PreviewHeight As Integer
     Get
       Return _PreviewHeight
     End Get
   End Property
 
-  Public ReadOnly Property ActualPreviewWidth As Integer
+  Public Overridable ReadOnly Property ActualPreviewWidth As Integer
     Get
       Return _ActualPreviewWidth
     End Get
   End Property
 
-  Public ReadOnly Property ActualPreviewHeight As Integer
+  Public Overridable ReadOnly Property ActualPreviewHeight As Integer
     Get
       Return _ActualPreviewHeight
     End Get
   End Property
 
-  Public ReadOnly Property SampleUrl As String
+  Public Overridable ReadOnly Property SampleUrl As String
     Get
       Return _SampleUrl
     End Get
   End Property
 
-  Public ReadOnly Property SampleWidth As Integer
+  Public Overridable ReadOnly Property SampleWidth As Integer
     Get
       Return _SampleWidth
     End Get
   End Property
 
-  Public ReadOnly Property SampleHeight As Integer
+  Public Overridable ReadOnly Property SampleHeight As Integer
     Get
       Return _SampleHeight
     End Get
   End Property
 
-  Public ReadOnly Property SampleFileSize As Integer
+  Public Overridable ReadOnly Property SampleFileSize As Integer
     Get
       Return _SampleFileSize
     End Get
   End Property
 
-  Public ReadOnly Property JpegUrl As String
+  Public Overridable ReadOnly Property JpegUrl As String
     Get
       Return _JpegUrl
     End Get
   End Property
 
-  Public ReadOnly Property JpegWidth As String
+  Public Overridable ReadOnly Property JpegWidth As String
     Get
       Return _JpegWidth
     End Get
   End Property
 
-  Public ReadOnly Property JpegHeight As Integer
+  Public Overridable ReadOnly Property JpegHeight As Integer
     Get
       Return _JpegHeight
     End Get
   End Property
 
-  Public ReadOnly Property JpegFileSize As Integer
+  Public Overridable ReadOnly Property JpegFileSize As Integer
     Get
       Return _JpegFileSize
     End Get
   End Property
 
-  Public ReadOnly Property Rating As Char
-    Get
-      Return _Rating
-    End Get
-  End Property
-
-  Public ReadOnly Property HasChildren As Boolean
-    Get
-      Return _HasChildren
-    End Get
-  End Property
-
-  Public ReadOnly Property ParentId As Integer?
-    Get
-      Return _ParentId
-    End Get
-  End Property
-
-  Public ReadOnly Property Status As String
+  Public Overridable ReadOnly Property Status As String
     Get
       Return _Status
     End Get
   End Property
 
-  Public ReadOnly Property IsHeld As Boolean
+  Public Overridable ReadOnly Property IsHeld As Boolean
     Get
       Return _IsHeld
     End Get

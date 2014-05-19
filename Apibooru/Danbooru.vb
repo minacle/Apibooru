@@ -2,7 +2,7 @@
 Imports System.Net
 Imports System.Xml
 
-Public Class Moebooru
+Public Class Danbooru
   Inherits Booru
 
   Private _Req As WebRequest
@@ -20,7 +20,7 @@ Public Class Moebooru
   End Sub
 
   Public Overrides Function BeginPostsList(Limit As Integer, Page As Integer, Tags As String, Callback As AsyncCallback, State As Object) As IAsyncResult
-    Dim U As New Uri(BaseUri, String.Format("/post.xml?limit={0}&page={1}&tags={2}", Limit, Page, Tags))
+    Dim U As New Uri(BaseUri, String.Format("/posts.xml?limit={0}&page={1}&tags={2}", Limit, Page, Tags))
     If _IsWorking Then Throw New InvalidOperationException
     _IsWorking = True
     _Req = WebRequest.Create(U)
@@ -48,7 +48,7 @@ Public Class Moebooru
             Case XmlNodeType.Element
               Select Case .Name
                 Case "post"
-                  Posts.Add(New MoebooruPost(.ReadOuterXml))
+                  Posts.Add(New DanbooruPost(.ReadOuterXml))
               End Select
           End Select
         Loop

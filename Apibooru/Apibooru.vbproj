@@ -64,9 +64,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Gelbooru.vb" />
+    <Compile Include="Danbooru.vb" />
     <Compile Include="Moebooru.vb" />
     <Compile Include="Booru.vb" />
     <Compile Include="GelbooruPost.vb" />
+    <Compile Include="DanbooruPost.vb" />
     <Compile Include="MoebooruPost.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="Post.vb" />

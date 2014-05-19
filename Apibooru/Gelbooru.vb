@@ -11,6 +11,10 @@ Public Class Gelbooru
   Private _IsWorking As Boolean
   Private _IsFinished As Boolean
 
+  Public Sub New(BaseUri As String)
+    MyBase.New(BaseUri)
+  End Sub
+
   Public Sub New(BaseUri As Uri)
     MyBase.New(BaseUri)
   End Sub

@@ -1,4 +1,4 @@
-﻿Imports System.Threading.Tasks
+﻿Imports System.Globalization.CultureInfo
 Imports System.Net
 Imports System.Xml
 
@@ -20,7 +20,12 @@ Public Class Danbooru
   End Sub
 
   Public Overrides Function BeginPostsList(limit As Integer, page As Integer, tags As String, callback As AsyncCallback, state As Object) As IAsyncResult
-    Dim u As New Uri(BaseUri, String.Format(Globalization.CultureInfo.InvariantCulture, "/posts.xml?limit={0}&page={1}&tags={2}", limit, page, tags))
+    Dim q As String = "?"
+    If limit >= 0 Then q &= String.Format(InvariantCulture, "limit={0}&", limit)
+    If page >= 0 Then q &= String.Format(InvariantCulture, "page={0}&", page)
+    If tags IsNot Nothing Then q &= String.Format(InvariantCulture, "tags={0}&", Uri.EscapeDataString(tags))
+    q = q.Remove(q.Length - 1)
+    Dim u As New Uri(BaseUri, "/posts.xml" & q)
     If m_IsWorking Then Throw New InvalidOperationException
     m_IsWorking = True
     m_Req = WebRequest.Create(u)

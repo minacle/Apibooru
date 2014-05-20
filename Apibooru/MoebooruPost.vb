@@ -4,197 +4,78 @@ Imports System.Xml
 Public Class MoebooruPost
   Inherits Post
 
-  Protected _CreatedAt As Integer
-  Protected _Author As String
-  Protected _Change As Integer
-  Protected _FileSize As Integer
-  Protected _IsShownInIndex As Boolean
-  Protected _PreviewUrl As String
-  Protected _PreviewWidth As Integer
-  Protected _PreviewHeight As Integer
-  Protected _ActualPreviewWidth As Integer
-  Protected _ActualPreviewHeight As Integer
-  Protected _SampleUrl As String
-  Protected _SampleWidth As Integer
-  Protected _SampleHeight As Integer
-  Protected _SampleFileSize As Integer
-  Protected _JpegUrl As String
-  Protected _JpegWidth As Integer
-  Protected _JpegHeight As Integer
-  Protected _JpegFileSize As Integer
-  Protected _Status As String
-  Protected _IsHeld As Boolean
+  Public Overridable Property CreatedAt As Integer
+  Public Overridable Property Author As String
+  Public Overridable Property Change As Integer
+  Public Overridable Property FileSize As Integer
+  Public Overridable Property IsShownInIndex As Boolean
+  Public Overridable Property PreviewUrl As String
+  Public Overridable Property PreviewWidth As Integer
+  Public Overridable Property PreviewHeight As Integer
+  Public Overridable Property ActualPreviewWidth As Integer
+  Public Overridable Property ActualPreviewHeight As Integer
+  Public Overridable Property SampleUrl As String
+  Public Overridable Property SampleWidth As Integer
+  Public Overridable Property SampleHeight As Integer
+  Public Overridable Property SampleFileSize As Integer
+  Public Overridable Property JpegUrl As String
+  Public Overridable Property JpegWidth As String
+  Public Overridable Property JpegHeight As Integer
+  Public Overridable Property JpegFileSize As Integer
+  Public Overridable Property Status As String
+  Public Overridable Property IsHeld As Boolean
 
-  Public Overridable ReadOnly Property CreatedAt As Integer
-    Get
-      Return _CreatedAt
-    End Get
-  End Property
-
-  Public Overridable ReadOnly Property Author As String
-    Get
-      Return _Author
-    End Get
-  End Property
-
-  Public Overridable ReadOnly Property Change As Integer
-    Get
-      Return _Change
-    End Get
-  End Property
-
-  Public Overridable ReadOnly Property FileSize As Integer
-    Get
-      Return _FileSize
-    End Get
-  End Property
-
-  Public Overridable ReadOnly Property IsShownInIndex As Boolean
-    Get
-      Return _IsShownInIndex
-    End Get
-  End Property
-
-  Public Overridable ReadOnly Property PreviewUrl As String
-    Get
-      Return _PreviewUrl
-    End Get
-  End Property
-
-  Public Overridable ReadOnly Property PreviewWidth As Integer
-    Get
-      Return _PreviewWidth
-    End Get
-  End Property
-
-  Public Overridable ReadOnly Property PreviewHeight As Integer
-    Get
-      Return _PreviewHeight
-    End Get
-  End Property
-
-  Public Overridable ReadOnly Property ActualPreviewWidth As Integer
-    Get
-      Return _ActualPreviewWidth
-    End Get
-  End Property
-
-  Public Overridable ReadOnly Property ActualPreviewHeight As Integer
-    Get
-      Return _ActualPreviewHeight
-    End Get
-  End Property
-
-  Public Overridable ReadOnly Property SampleUrl As String
-    Get
-      Return _SampleUrl
-    End Get
-  End Property
-
-  Public Overridable ReadOnly Property SampleWidth As Integer
-    Get
-      Return _SampleWidth
-    End Get
-  End Property
-
-  Public Overridable ReadOnly Property SampleHeight As Integer
-    Get
-      Return _SampleHeight
-    End Get
-  End Property
-
-  Public Overridable ReadOnly Property SampleFileSize As Integer
-    Get
-      Return _SampleFileSize
-    End Get
-  End Property
-
-  Public Overridable ReadOnly Property JpegUrl As String
-    Get
-      Return _JpegUrl
-    End Get
-  End Property
-
-  Public Overridable ReadOnly Property JpegWidth As String
-    Get
-      Return _JpegWidth
-    End Get
-  End Property
-
-  Public Overridable ReadOnly Property JpegHeight As Integer
-    Get
-      Return _JpegHeight
-    End Get
-  End Property
-
-  Public Overridable ReadOnly Property JpegFileSize As Integer
-    Get
-      Return _JpegFileSize
-    End Get
-  End Property
-
-  Public Overridable ReadOnly Property Status As String
-    Get
-      Return _Status
-    End Get
-  End Property
-
-  Public Overridable ReadOnly Property IsHeld As Boolean
-    Get
-      Return _IsHeld
-    End Get
-  End Property
-
-  Public Sub New([String] As String)
-    MyBase.New([String])
+  Public Sub New([string] As String)
+    Dim origin As New MemoryStream
+    Dim writer As New StreamWriter(origin)
+    writer.Write([string])
+    writer.Flush()
+    origin.Seek(0, SeekOrigin.Begin)
+    Me.Origin = origin
   End Sub
 
-  Public Sub New(Stream As Stream)
-    MyBase.New(Stream)
-  End Sub
-
-  Public Sub New(XmlReader As Xml.XmlReader)
-    MyBase.New(XmlReader)
+  Public Sub New(stream As Stream)
+    Origin = stream
   End Sub
 
   Protected Overrides Sub ParseOrigin()
-    Using Reader = XmlReader.Create(_Origin)
+    Using Reader = XmlReader.Create(Origin)
       With Reader
         Do While .Read
           Select Case .NodeType
             Case XmlNodeType.Element
               Select Case .Name
                 Case "post"
-                  _ActualPreviewHeight = .GetAttribute("actual_preview_height")
-                  _ActualPreviewWidth = .GetAttribute("actual_preview_width")
-                  _Author = .GetAttribute("author")
-                  _Change = .GetAttribute("change")
-                  _CreatedAt = .GetAttribute("created_at")
-                  _CreatorId = .GetAttribute("creator_id")
-                  _FileSize = .GetAttribute("file_size")
-                  _FileUrl = .GetAttribute("file_url")
-                  _HasChildren = .GetAttribute("has_children")
-                  _Height = .GetAttribute("height")
-                  _Id = .GetAttribute("id")
-                  _IsHeld = .GetAttribute("is_held")
-                  _IsShownInIndex = .GetAttribute("is_shown_in_index")
-                  _JpegFileSize = .GetAttribute("jpeg_file_size")
-                  _JpegHeight = .GetAttribute("jpeg_height")
-                  _JpegUrl = .GetAttribute("jpeg_url")
-                  _Md5 = .GetAttribute("md5")
-                  _ParentId = .GetAttribute("parentid")
-                  _PreviewHeight = .GetAttribute("preview_height")
-                  _PreviewUrl = .GetAttribute("preview_url")
-                  _Rating = .GetAttribute("rating")
-                  _SampleFileSize = .GetAttribute("sample_file_size")
-                  _SampleHeight = .GetAttribute("sample_height")
-                  _SampleUrl = .GetAttribute("sample_url")
-                  _SampleWidth = .GetAttribute("sample_width")
-                  _Score = .GetAttribute("score")
-                  _Source = .GetAttribute("source")
-                  _Status = .GetAttribute("status")
-                  _Tags = .GetAttribute("tags")
-                  _Width = .GetAttribute("width")
+                  ActualPreviewHeight = .GetAttribute("actual_preview_height")
+                  ActualPreviewWidth = .GetAttribute("actual_preview_width")
+                  Author = .GetAttribute("author")
+                  Change = .GetAttribute("change")
+                  CreatedAt = .GetAttribute("created_at")
+                  CreatorId = .GetAttribute("creator_id")
+                  FileSize = .GetAttribute("file_size")
+                  FileUrl = .GetAttribute("file_url")
+                  HasChildren = .GetAttribute("has_children")
+                  Height = .GetAttribute("height")
+                  Id = .GetAttribute("id")
+                  IsHeld = .GetAttribute("is_held")
+                  IsShownInIndex = .GetAttribute("is_shown_in_index")
+                  JpegFileSize = .GetAttribute("jpeg_file_size")
+                  JpegHeight = .GetAttribute("jpeg_height")
+                  JpegUrl = .GetAttribute("jpeg_url")
+                  MD5 = .GetAttribute("md5")
+                  ParentId = .GetAttribute("parentid")
+                  PreviewHeight = .GetAttribute("preview_height")
+                  PreviewUrl = .GetAttribute("preview_url")
+                  Rating = .GetAttribute("rating")
+                  SampleFileSize = .GetAttribute("sample_file_size")
+                  SampleHeight = .GetAttribute("sample_height")
+                  SampleUrl = .GetAttribute("sample_url")
+                  SampleWidth = .GetAttribute("sample_width")
+                  Score = .GetAttribute("score")
+                  Source = .GetAttribute("source")
+                  Status = .GetAttribute("status")
+                  Tags = .GetAttribute("tags")
+                  Width = .GetAttribute("width")
                   If .IsEmptyElement Then Exit Do
               End Select
             Case XmlNodeType.EndElement
@@ -206,6 +87,6 @@ Public Class MoebooruPost
         Loop
       End With
     End Using
-    _Origin.Seek(0, SeekOrigin.Begin)
+    Origin.Seek(0, SeekOrigin.Begin)
   End Sub
 End Class

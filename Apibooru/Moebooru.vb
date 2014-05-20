@@ -5,55 +5,55 @@ Imports System.Xml
 Public Class Moebooru
   Inherits Booru
 
-  Private _Req As WebRequest
-  Private _Res As WebResponse
-  Private _Stream As IO.Stream
-  Private _IsWorking As Boolean
-  Private _IsFinished As Boolean
+  Private m_Req As WebRequest
+  Private m_Res As WebResponse
+  Private m_Stream As IO.Stream
+  Private m_IsWorking As Boolean
+  Private m_IsFinished As Boolean
 
-  Public Sub New(BaseUri As String)
-    MyBase.New(BaseUri)
+  Public Sub New(baseUri As String)
+    MyBase.New(baseUri)
   End Sub
 
-  Public Sub New(BaseUri As Uri)
-    MyBase.New(BaseUri)
+  Public Sub New(baseUri As Uri)
+    MyBase.New(baseUri)
   End Sub
 
-  Public Overrides Function BeginPostsList(Limit As Integer, Page As Integer, Tags As String, Callback As AsyncCallback, State As Object) As IAsyncResult
-    Dim U As New Uri(BaseUri, String.Format("/post.xml?limit={0}&page={1}&tags={2}", Limit, Page, Tags))
-    If _IsWorking Then Throw New InvalidOperationException
-    _IsWorking = True
-    _Req = WebRequest.Create(U)
-    Return _Req.BeginGetResponse(Callback, State)
+  Public Overrides Function BeginPostsList(limit As Integer, page As Integer, tags As String, callback As AsyncCallback, state As Object) As IAsyncResult
+    Dim u As New Uri(BaseUri, String.Format(Globalization.CultureInfo.InvariantCulture, "/post.xml?limit={0}&page={1}&tags={2}", limit, page, tags))
+    If m_IsWorking Then Throw New InvalidOperationException
+    m_IsWorking = True
+    m_Req = WebRequest.Create(u)
+    Return m_Req.BeginGetResponse(callback, state)
   End Function
 
-  Public Overrides Function EndPostsList(AsyncResult As IAsyncResult) As Post()
-    If _IsFinished Then Throw New InvalidOperationException
-    _Res = _Req.EndGetResponse(AsyncResult)
-    _Stream = _Res.GetResponseStream
-    EndPostsList = ParsePostsList(_Stream)
-    _Stream.Dispose()
-    _Res = Nothing
-    _Req = Nothing
-    _IsFinished = True
-    _IsWorking = False
+  Public Overrides Function EndPostsList(asyncResult As IAsyncResult) As Post()
+    If m_IsFinished Then Throw New InvalidOperationException
+    m_Res = m_Req.EndGetResponse(asyncResult)
+    m_Stream = m_Res.GetResponseStream
+    EndPostsList = ParsePostsList(m_Stream)
+    m_Stream.Dispose()
+    m_Res = Nothing
+    m_Req = Nothing
+    m_IsFinished = True
+    m_IsWorking = False
   End Function
 
-  Private Function ParsePostsList(Stream As IO.Stream) As Post()
-    Dim Posts As New List(Of Post)
-    Using Reader = XmlReader.Create(Stream)
-      With Reader
+  Private Shared Function ParsePostsList(stream As IO.Stream) As Post()
+    Dim posts As New List(Of Post)
+    Using reader = XmlReader.Create(stream)
+      With reader
         Do While .Read
           Select Case .NodeType
             Case XmlNodeType.Element
               Select Case .Name
                 Case "post"
-                  Posts.Add(New MoebooruPost(.ReadOuterXml))
+                  posts.Add(New MoebooruPost(.ReadOuterXml))
               End Select
           End Select
         Loop
       End With
     End Using
-    Return Posts.ToArray
+    Return posts.ToArray
   End Function
 End Class
